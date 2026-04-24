@@ -1,0 +1,16 @@
+Dear Hiring Manager,
+
+I hope you are doing well.
+
+I am writing to express my interest in the AI/ML Engineer role. I am a Computer Science graduate with a strong focus on Artificial Intelligence and Machine Learning, particularly in building practical systems using Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), and backend APIs.
+
+I have worked on projects involving Visual Question Answering (VQA) using satellite images, where I applied deep learning techniques to extract meaningful insights. I have also explored building AI pipelines using Python, integrating APIs, handling structured and unstructured data, and understanding how modern AI systems combine retrieval and generation to improve accuracy.
+
+I am particularly interested in working on real-world AI systems, including agentic workflows, LLM-based applications, and scalable backend integration. While I continue to deepen my experience with frameworks like LangChain and production-level AI systems, I have a strong grasp of the underlying concepts and a hands-on approach to learning and implementation.
+
+I am highly motivated to contribute, learn quickly, and build impactful AI-driven solutions. I would welcome the opportunity to discuss how my skills and enthusiasm align with your team’s goals.
+
+Thank you for your time and consideration.
+
+Best regards,
+Sarthak Sharma

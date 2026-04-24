@@ -1,0 +1,73 @@
+MNIST Handwritten Digit Generation — GAN (PyTorch)
+A Generative Adversarial Network built from scratch in PyTorch to generate realistic handwritten digit images. Unlike previous projects that classify images, this project generates new images from random noise — marking the transition from discriminative to generative modeling.
+
+What is a GAN?
+A GAN consists of two networks trained simultaneously in opposition:
+
+Generator — takes random noise as input and generates fake images
+Discriminator — takes an image (real or fake) and predicts whether it is real
+They compete in a minimax game:
+
+Discriminator tries to correctly distinguish real from fake
+Generator tries to fool the Discriminator into thinking its fakes are real
+Over time both improve until generated images are indistinguishable from real ones
+Dataset
+MNIST — 60,000 grayscale handwritten digit images (28×28 pixels)
+
+Images normalized to [-1, 1] using transforms.Normalize((0.5,), (0.5,)) to match the Generator's Tanh output range.
+
+Architecture
+Generator
+Takes a 100-dimensional random noise vector and upsamples it into a 28×28 image.
+
+Noise (100,)
+    ↓
+Linear(100 → 128×7×7) → ReLU → Unflatten(128, 7, 7)
+    ↓ (128, 7, 7)
+ConvTranspose2d(128→64, 4×4, stride=2) → BatchNorm → ReLU   # 7→14
+    ↓ (64, 14, 14)
+ConvTranspose2d(64→1, 4×4, stride=2) → Tanh                 # 14→28
+    ↓
+Generated Image (1, 28, 28)
+Discriminator
+Takes a 28×28 image and outputs a probability of it being real.
+
+Input (1, 28, 28)
+    ↓
+Conv(1→32) → ReLU → MaxPool(2×2)
+Conv(32→64) → BatchNorm → ReLU
+Conv(64→128) → BatchNorm → ReLU → MaxPool(2×2)
+    ↓
+Flatten → Linear(128×7×7 → 1024) → ReLU → Linear(1024→1) → Sigmoid
+    ↓
+Probability (real or fake)
+Training Details
+Hyperparameter	Value
+Loss Function	BCELoss
+Optimizer	Adam (both G and D)
+Learning Rate	0.0002
+Batch Size	32
+Epochs	150
+Latent Vector Size	100
+Hardware	NVIDIA T4 GPU
+Training tricks used:
+Label smoothing — real labels set to 0.9 instead of 1.0 to prevent Discriminator overconfidence
+detach() — fake images detached from Generator graph when training Discriminator to avoid double backprop
+Separate optimizers — Generator and Discriminator each have their own Adam optimizer
+Training Loop Structure
+# Step 1: Train Discriminator
+loss_real = loss(D(real_images), real_labels)   # real → 1
+loss_fake = loss(D(G(noise).detach()), fake_labels)  # fake → 0
+loss_d = loss_real + loss_fake
+
+# Step 2: Train Generator
+loss_g = -mean(log(D(G(noise))))  # fool D → maximize D output on fakes
+Key Concepts Practiced
+Adversarial training — two networks with opposing objectives
+ConvTranspose2d — upsampling (reverse of convolution) for image generation
+BCELoss — binary cross entropy for real/fake classification
+Label smoothing — stabilizing GAN training
+detach() — preventing gradient flow between Generator and Discriminator updates
+Tanh output + normalized input — matching Generator output range to data range
+What's Next
+Transformers — the architecture powering modern LLMs and vision models, and the foundation for diffusion models.

@@ -1,0 +1,47 @@
+Sarthak Sharma
++91 8979183511 | sarthaksharma661@gmail.com | LinkedIn | GitHub | LeetCode
+RESEARCH PUBLICATION
+Visual Question Answering with Satellite ImagesICDAM 2025 (Springer) Link
+Published at the International Conference on Data Analytics and Management. Designed and implemented a deep
+learning system combining CNNs and RNNs for answering natural language questions about satellite imagery, with focus
+on large-scale image analysis efficiency.
+EDUCATION
+Bachelor of Technology in Computer Science (7 CGPA) Nov 2021 – 2025
+KIET Group of Institutions, AKTU | Ghaziabad, Delhi NCR
+Class XII – Saraswati Vidya Mandir (92%) Apr 2019 – 2020
+Khurja, Uttar Pradesh
+Class X – Saraswati Vidya Mandir (87%) Apr 2017 – 2018
+Khurja, Uttar Pradesh
+EXPERIENCE
+Headstarter AI – Software Engineering Fellow Jul 2024 – Sep 2024
+• Built and shipped 10+ software projects in Python and JavaScript over 7 weeks, applying MVC design patterns to
+improve team workflow and code maintainability.
+• Won 2 hackathons by applying skills in AI, machine learning, and full-stack development, collaborating with
+mentors from Google, Amazon, and Twitter.
+• Completed Track B final project, demonstrating end-to-end project management and algorithm design, achieving a
+20% improvement in processing speed.
+PROJECTS
+Visual Question Answering System | TensorFlow, Python, PyTorch, NumPy
+• Developed a VQA system using satellite imagery to answer user-generated questions, combining computer vision
+and NLP for comprehensive multimodal image understanding.
+• Designed and trained a deep learning model integrating CNNs and RNNs; published findings at ICDAM 2025
+(Springer).
+LoRA Fine-Tuned GPT-2 Text Generation | Python, PyTorch, Hugging Face Transformers, PEFT
+• Fine-tuned GPT-2 using Low-Rank Adaptation (LoRA) to build a domain-specific text generation system, achieving
+parameter-efficient training with PEFT.
+• Curated a custom dataset and trained the model end-to-end to generate contextually accurate, domain-aware
+responses.
+CIFAR-10 Image Classifier (AlexNet-style CNN)| Python, PyTorch
+• Built and optimized a CNN classifier achieving ~80% accuracy on CIFAR-10 using data augmentation, batch
+normalization, and StepLR learning rate scheduling.
+• Implemented transfer learning experiments with VGG16, reaching 86.45% validation accuracy.
+News App| JavaScript, ReactJS, NewsAPI
+• Developed a dynamic news aggregation app integrating NewsAPI to surface real-time articles across categories with
+search and filtering functionality.
+TECHNICAL SKILLS
+Languages: Python, C++, C, JavaScript, Java
+ML / AI: PyTorch, TensorFlow, Scikit-learn, NumPy, Hugging Face (Transformers, PEFT), LoRA
+Tools & Technologies: FastAPI, ReactJS, Git, GitHub, Docker, AWS, MongoDB, SQL, Linux, VSCode
+CERTIFICATIONS
+AWS Academy Graduate – Cloud Architecting AWS Academy, 2024
+Python Data Structures University of Michigan, 2022

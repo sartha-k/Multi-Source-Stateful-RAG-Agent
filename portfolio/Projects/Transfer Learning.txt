@@ -1,0 +1,69 @@
+Transfer Learning on CIFAR-10 using VGG16
+Overview
+This project applies transfer learning to classify images from the CIFAR-10 dataset using a VGG16 model pretrained on ImageNet. Instead of training a deep network from scratch, the pretrained convolutional features are frozen and only the final classification layer is retrained for the 10-class CIFAR-10 task.
+
+Final Test Accuracy: 86.45%
+
+What is Transfer Learning?
+Transfer learning reuses a model trained on one task as a starting point for a different but related task. The pretrained model has already learned general visual features (edges, textures, shapes) from a large dataset. We adapt it to our task by replacing and retraining only the final layer.
+
+Two-step process:
+
+Pretraining — VGG16 was trained on ImageNet (1000 classes, ~1.2M images)
+Fine-tuning — Freeze the feature extractor, replace the output head, train on CIFAR-10
+Model Architecture
+VGG16 has two main blocks:
+
+features — 13 convolutional layers with ReLU activations and MaxPooling, progressively expanding channels: 3 → 64 → 128 → 256 → 512 → 512
+classifier — Three fully connected layers ending in a 1000-class output
+What was changed
+Component	Original VGG16	This Project
+features	Trainable	Frozen (requires_grad = False)
+classifier[6]	Linear(4096 → 1000)	Replaced with Linear(4096 → 10)
+Only the classifier head is trained — everything else is locked.
+
+Data Pipeline
+CIFAR-10 images are 32×32 RGB. VGG16 expects 224×224 input. The transform pipeline handles this:
+
+Resize(256) → CenterCrop(224) → ToTensor() → Normalize(ImageNet mean/std)
+ImageNet normalization stats are used (mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225]) because the frozen features were trained with this distribution.
+
+Train set: 50,000 images, batch size 32, shuffled
+Test set: 10,000 images, batch size 32, not shuffled
+Training
+Hyperparameter	Value
+Optimizer	SGD
+Learning Rate	0.01
+Loss	CrossEntropyLoss
+Epochs	10
+Device	CUDA (T4 GPU)
+Training Loss
+Epoch	Loss
+1	0.6688
+2	0.2802
+3	0.1455
+5	0.0706
+10	0.0094
+Loss drops steadily, indicating the new classifier head converges well on frozen features.
+
+Results
+Test Accuracy: 86.45%
+This is a strong result for only retraining the final layer, demonstrating how effectively ImageNet features transfer to CIFAR-10.
+
+Key Concepts
+Why freeze the feature layers? The conv layers have already learned powerful low-level and mid-level visual representations. Retraining them would be slow, expensive, and risks destroying pretrained knowledge (catastrophic forgetting).
+
+Why use ImageNet normalization? The frozen conv filters were optimized assuming that input distribution. Using different stats would distort activations and degrade the quality of extracted features.
+
+Why replace only classifier[6]? The intermediate FC layers (4096→4096) still act as useful general-purpose feature transformers. Only the final mapping needs to change from 1000 ImageNet classes to 10 CIFAR-10 classes.
+
+How to Run
+# Install dependencies
+pip install torch torchvision
+
+# Run the notebook
+jupyter notebook Transfer_Learning.ipynb
+GPU is recommended — the notebook was trained on a T4 via Google Colab.
+
+Files
+Transfer_Learning.ipynb   # Full training and evaluation code

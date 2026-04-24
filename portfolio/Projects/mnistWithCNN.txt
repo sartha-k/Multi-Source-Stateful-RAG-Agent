@@ -1,0 +1,57 @@
+MNIST Digit Classification — Convolutional Neural Network (PyTorch)
+A CNN-based image classifier built in PyTorch to classify handwritten digits from the MNIST dataset into 10 categories (0–9), achieving 99.11% test accuracy.
+
+Dataset
+MNIST — 70,000 grayscale images (28×28 pixels) of handwritten digits:
+
+Label	Class
+0	Zero
+1	One
+2	Two
+3	Three
+4	Four
+5	Five
+6	Six
+7	Seven
+8	Eight
+9	Nine
+Training set: 60,000 images
+Test set: 10,000 images
+Model Architecture
+A two-block CNN followed by a fully connected classifier:
+
+Input (1, 28, 28)
+    ↓
+Conv2d(1→32, 3×3, pad=1) → BatchNorm → ReLU → MaxPool(2×2)
+    ↓ (32, 14, 14)
+Conv2d(32→64, 3×3, pad=1) → BatchNorm → ReLU → MaxPool(2×2)
+    ↓ (64, 7, 7)
+Flatten → Linear(3136→128) → ReLU → Linear(128→10)
+    ↓
+Logits (10)
+Layer	Details
+Conv Block 1	32 filters, 3×3 kernel, BatchNorm, ReLU, MaxPool
+Conv Block 2	64 filters, 3×3 kernel, BatchNorm, ReLU, MaxPool
+Classifier	Flatten → 128 → 10 (raw logits)
+Training Details
+Hyperparameter	Value
+Loss Function	CrossEntropyLoss
+Optimizer	Adam
+Learning Rate	0.001
+Batch Size	32
+Epochs	30
+Hardware	NVIDIA T4 GPU
+Results
+Test Accuracy: 99.11%
+
+Loss dropped consistently from ~0.024 at epoch 1 to near zero by epoch 30, confirming the model learned the digit patterns effectively.
+
+Key Concepts Practiced
+nn.Conv2d — convolutional layers
+nn.BatchNorm2d — batch normalization for stable training
+nn.MaxPool2d — spatial downsampling
+GPU training with .to(device)
+DataLoader for efficient batched training and evaluation
+torch.no_grad() for memory-efficient inference
+What's Next
+Implementing AlexNet on a more complex dataset to explore deeper architectures, dropout regularization, and the design decisions behind landmark CNN models.

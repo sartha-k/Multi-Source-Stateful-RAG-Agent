@@ -1,0 +1,199 @@
+his project implements a fully connected neural network from scratch using only NumPy.
+
+No deep learning frameworks (such as TensorFlow or PyTorch) were used.
+
+The goal of this project was to deeply understand:
+
+Forward propagation
+
+Backpropagation
+
+Gradient descent
+
+Softmax activation
+
+One-hot encoding
+
+Cross-entropy loss
+
+Training vs validation accuracy
+
+Learning rate effects
+
+This project focuses on understanding the mathematics and intuition behind neural networks rather than relying on high-level libraries.
+
+🧠 Problem Statement
+
+The model is trained to classify handwritten digits (0–9).
+
+Input: Image represented as pixel values
+
+Output: Predicted digit (0–9)
+
+Type: Multi-class classification
+
+🏗 Model Architecture
+
+The neural network consists of:
+
+Input Layer
+
+Hidden Layer (ReLU activation)
+
+Output Layer (Softmax activation)
+
+Flow: Input → Linear → ReLU → Linear → Softmax → Prediction 🔢 Key Components Implemented 1️⃣ Forward Propagation
+
+Linear transformation
+
+ReLU activation
+
+Softmax activation
+
+Probability output
+
+2️⃣ One-Hot Encoding
+
+Labels are converted from:
+
+3
+
+into:
+
+[0, 0, 0, 1, 0, 0, 0, 0, 0, 0]
+
+This allows proper gradient computation during backpropagation.
+
+3️⃣ Backpropagation
+
+Manually derived gradients for:
+
+dZ2 = A2 - Y
+
+dW2, db2
+
+dZ1 using ReLU derivative
+
+dW1, db1
+
+All gradients were computed without using automatic differentiation.
+
+4️⃣ Gradient Descent
+
+Parameters are updated using:
+
+W = W - α * dW b = b - α * db
+
+The learning rate (α) was experimented with to observe convergence behavior.
+
+📊 Training Observations
+
+During experimentation:
+
+Higher learning rates (e.g., 0.01) led to faster convergence.
+
+Very small learning rates required more iterations.
+
+Too large learning rates caused instability.
+
+Validation accuracy closely followed training accuracy (minimal overfitting).
+
+Final accuracy achieved (depending on learning rate and iterations):
+
+Training Accuracy: ~75% – 98%
+
+Validation Accuracy: ~75% – 97%
+
+🔍 Important Learnings
+
+Through this project, I developed understanding of:
+
+Why softmax is required for multi-class classification
+
+Why sigmoid is not suitable for mutually exclusive classes
+
+How gradients create learning signals
+
+Why negative gradients increase weights
+
+How learning rate affects convergence
+
+Why accuracy plateaus
+
+Debugging shape mismatches in NumPy
+
+Numerical stability in softmax (subtracting max value)
+
+⚠️ Challenges Faced
+
+Overflow in exponential computation
+
+Incorrect one-hot encoding shape
+
+Gradient instability
+
+Accuracy collapsing due to wrong learning rate
+
+Debugging dimension mismatches
+
+These were solved by:
+
+Using stable softmax implementation
+
+Careful shape tracking
+
+Debugging with np.unique(predictions)
+
+Monitoring training accuracy every 50 iterations
+
+🚀 How to Run
+
+Clone the repository:
+
+git clone https://github.com/sartha-k/neural-network-from-scratch.git
+
+📈 Future Improvements
+
+Mini-batch gradient descent
+
+Learning rate scheduling
+
+L2 regularization
+
+Dropout
+
+Vectorization optimizations
+
+Comparison with PyTorch implementation
+
+Visualization of loss curves
+
+🧩 Why This Project Matters
+
+High-level frameworks abstract away important mathematical details.
+
+Building a neural network from scratch provides:
+
+Strong intuition for backpropagation
+
+Deep understanding of optimization
+
+Ability to debug real-world models
+
+Strong foundation for advanced architectures
+
+📚 Technologies Used
+
+Python
+
+NumPy
+
+Jupyter Notebook
+
+No machine learning frameworks were used.
+
+🎯 Conclusion
+
+This project demonstrates a solid understanding of neural network fundamentals and optimization mechanics by implementing everything manually from first principles.
+
+It serves as a foundation for deeper exploration into deep learning architectures and modern frameworks.

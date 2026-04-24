@@ -1,0 +1,67 @@
+Autograd in PyTorch
+This repository contains my hands-on implementation and exploration of PyTorch Autograd.
+
+The goal of this repository is to deeply understand how automatic differentiation works before building full neural networks.
+
+📌 Topics Covered
+requires_grad=True
+Computation graphs
+grad_fn
+backward()
+Chain rule
+Gradient accumulation
+Detach and no_grad
+Manual neuron example (forward + backward)
+Each concept focuses on a core concept of automatic differentiation.
+
+🎯 Purpose
+Understand how PyTorch builds computation graphs
+Learn how gradients are calculated automatically
+Build intuition for backpropagation
+Prepare for neural network implementation
+🛠 Tech Used
+Python
+PyTorch
+🚀 Next Step
+After mastering autograd, the next focus will be:
+
+Building neural networks
+Loss functions
+Optimizers
+Full training loops
+Author
+Sarthak Sharma
+PyTorch Tensors
+This repository contains my hands-on practice while learning Tensors-in-pytorch.
+
+The goal of this repository is to build a strong foundation in tensor operations before moving to autograd and neural networks.
+
+📌 Topics Covered
+Tensor creation
+Tensor shapes and dimensions
+Data types and type casting
+Indexing and slicing
+Tensor mathematics
+Broadcasting
+Matrix multiplication
+Aggregation functions (sum, mean, argmax, etc.)
+CPU vs GPU tensors
+Performance benchmarking (CPU vs GPU)
+Each concept focuses on a specific tensor concept with practice examples.
+
+🎯 Purpose
+Strengthen understanding of tensor mechanics
+Build intuition for matrix operations
+Prepare for learning autograd and deep learning models
+Maintain structured learning on GitHub
+🛠 Tech Used
+Python
+PyTorch
+🚀 Next Step
+After mastering tensors, I will continue with:
+
+PyTorch Autograd
+Computational graphs
+Backpropagation fundamentals
+Author
+Sarthak Sharma

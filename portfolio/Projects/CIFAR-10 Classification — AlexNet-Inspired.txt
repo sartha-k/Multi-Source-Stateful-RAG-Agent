@@ -1,0 +1,65 @@
+CIFAR-10 Classification — AlexNet-Inspired CNN with Optimization (PyTorch)
+An AlexNet-inspired CNN built in PyTorch for CIFAR-10 classification, progressively optimized from 71% to 80.67% accuracy through data augmentation and learning rate scheduling.
+
+Dataset
+CIFAR-10 — 60,000 colored images (32×32 pixels, RGB) across 10 classes:
+
+Airplane, Automobile, Bird, Cat, Deer, Dog, Frog, Horse, Ship, Truck
+
+Training set: 50,000 images
+Test set: 10,000 images
+Model Architecture
+5 convolutional layers followed by a fully connected classifier, adapted for 32×32 RGB inputs.
+
+Input (3, 32, 32)
+    ↓
+Conv(3→16) → ReLU → MaxPool(2×2)        # 32→16
+    ↓
+Conv(16→32) → ReLU → MaxPool(2×2)       # 16→8
+    ↓
+Conv(32→64) → ReLU
+    ↓
+Conv(64→128) → ReLU
+    ↓
+Conv(128→256) → ReLU
+    ↓ (256, 4, 4)
+Flatten → Linear(4096→1000) → ReLU → Dropout(0.5)
+        → Linear(1000→516)  → ReLU → Dropout(0.5)
+        → Linear(516→128)   → ReLU
+        → Linear(128→10)
+    ↓
+Logits (10)
+Key design decision: Only 2 MaxPool layers — CIFAR-10's 32×32 input shrinks to 1×1 with 3 pools, destroying spatial information.
+
+Training Details
+Hyperparameter	Value
+Loss Function	CrossEntropyLoss
+Optimizer	Adam
+Learning Rate	0.001
+LR Scheduler	StepLR (gamma=0.5, step=30)
+Batch Size	32
+Epochs	30
+Hardware	NVIDIA T4 GPU
+Data Augmentation (training only)
+transforms.Compose([
+    transforms.RandomHorizontalFlip(),
+    transforms.RandomCrop(32, padding=4),
+    transforms.ToTensor(),
+])
+Results — Progressive Optimization
+Configuration	Accuracy
+Baseline (no dropout, no augmentation)	70%
++ Dropout (p=0.5)	71%
++ Data Augmentation	75%
++ LR Scheduling (gamma=0.5)	80.67%
+Each optimization was added and measured independently to verify its contribution.
+
+Key Concepts Practiced
+5-layer deep CNN inspired by AlexNet
+Dropout — reduces overfitting in FC layers
+Data Augmentation — random flip and crop to artificially expand training data
+Learning Rate Scheduling — decaying LR for better convergence
+Pooling placement strategy for small input images
+GPU training with .to(device)
+What's Next
+GAN (Generative Adversarial Network) — moving from classification to generative modeling, learning how a Generator and Discriminator train adversarially to produce realistic images.
