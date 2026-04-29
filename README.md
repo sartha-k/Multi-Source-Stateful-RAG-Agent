@@ -44,6 +44,7 @@ Challenges & Solutions
 Fixed Windows DLL errors (WinError 1114/126) by replacing PyTorch with ONNX-based embeddings
 Prevented infinite agent loops using recursion limits and stricter system prompts
 Optimized context handling using sliding-window chunking within token limits
+
 Impact
 Enabled interactive querying over static portfolio data
 Achieved fast and accurate responses using semantic retrieval
